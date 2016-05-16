@@ -21,8 +21,9 @@ $(document).ready(() => {
       dataType: 'html',
     });
     petitionPromise.done(data => {
+      $petition.append(`<h1>Petition ${petitionNumber}</h1>`);
       $loader.hide();
-      $petition.html(data);
+      $petition.append(data);
       $extra.show();
     });
     const tablePromise = $.ajax({
