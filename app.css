@@ -21,3 +21,11 @@ footer {
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
+
+#petition p:first-child {
+  font-size: 140%;
+}
+
+#petitionNumber {
+  min-width: 250px;
+}
