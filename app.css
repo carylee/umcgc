@@ -34,3 +34,13 @@ footer {
   font-size: 80%;
   margin-top: -10px;
 }
+
+a[onclick='goBack()'] {
+  display: none;
+}
+
+a[onclick*="popup"], a[href*="aspx"] {
+  pointer-events: none;
+  cursor: default;
+  color: black;
+}

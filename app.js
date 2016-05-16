@@ -1,9 +1,10 @@
 const $ = require('jQuery');
-const baseUrl = 'http://api.umcgc.com/petitions/';
+const baseUrl = 'http://api.umcgc.com/';
 
 $(document).ready(() => {
   const $petition = $('#petition');
   const $petitionNumber = $('#petitionNumber');
+  const $extra = $('#extra');
   const $btn = $('button');
   const $loader = $('.loader');
 
@@ -11,18 +12,26 @@ $(document).ready(() => {
     e.preventDefault();
     $loader.show();
     $petition.empty();
+    $extra.empty();
+    $extra.hide();
     const petitionNumber = $petitionNumber.val();
     const petitionPromise = $.ajax({
-      url: baseUrl + petitionNumber,
+      url: `${baseUrl}petitions/${petitionNumber}`,
       method: 'GET',
       dataType: 'html',
     });
     petitionPromise.done(data => {
       $loader.hide();
       $petition.html(data);
+      $extra.show();
     });
-    petitionPromise.fail((jqXHR, textStatus, errorThrown) => {
-      console.log(errorThrown);
+    const tablePromise = $.ajax({
+      url: `${baseUrl}petitions/meta/${petitionNumber}`,
+      method: 'GET',
+      dataType: 'html',
+    });
+    tablePromise.done(data => {
+      $extra.html(data);
     });
   });
 
