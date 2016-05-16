@@ -29,3 +29,8 @@ footer {
 #petitionNumber {
   min-width: 250px;
 }
+
+.subfooter {
+  font-size: 80%;
+  margin-top: -10px;
+}
