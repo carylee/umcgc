@@ -13,6 +13,7 @@
     "build": "npm run build:js && npm run build:css && npm run build:html",
     "watch:js": "watchify --extension=.js app.js -o public/bundle.js --debug --verbose",
     "watch:css": "nodemon -e css --ignore bundle.css --exec 'rework-npm app.css -o public/bundle.css'",
+    "deploy": "aws --profile=cary s3 cp --region=us-west-2 --recursive public/ s3://www.umcgc.com/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cary Lee",

@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-aws --profile=cary s3 cp --region=us-west-2 --recursive public/ s3://www.umcgc.com/
