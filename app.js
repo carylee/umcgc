@@ -3,6 +3,7 @@ const baseUrl = 'http://api.umcgc.com/';
 
 
 function view(petitionNumber) {
+  if (petitionNumber < 60001 || petitionNumber > 61059) return;
   const $petition = $('#petition');
   const $extra = $('#extra');
   const $loader = $('.loader');
@@ -33,6 +34,11 @@ function view(petitionNumber) {
 }
 
 $(() => {
+  const queryParamMatches = window.location.href.match(/\?p=(6\d{4})$/);
+  if (queryParamMatches && queryParamMatches.length > 1) {
+    window.location.replace(`/#${queryParamMatches[1]}`);
+  }
+
   const hashMatches = window.location.hash.match(/6\d{4}$/);
   if (hashMatches && hashMatches.length > 0) {
     view(hashMatches[0]);
@@ -41,20 +47,10 @@ $(() => {
   }
 
   const $petitionNumber = $('#petitionNumber');
-  const $btn = $('button');
 
   $('form').submit((e) => {
     e.preventDefault();
     view($petitionNumber.val());
     return false;
-  });
-
-  $petitionNumber.on('input', () => {
-    const number = $petitionNumber.val() * 1;
-    if (number < 61060 && number > 60000) {
-      $btn.prop('disabled', false);
-    } else {
-      $btn.prop('disabled', true);
-    }
   });
 });
