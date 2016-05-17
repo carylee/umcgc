@@ -17,7 +17,7 @@ function view(petitionNumber) {
     method: 'GET',
     dataType: 'html',
   });
-  petitionPromise.done(data => {
+  petitionPromise.done(function (data) {
     $petition.append(`<h1>Petition ${petitionNumber}</h1>`);
     $loader.hide();
     $petition.append(data);
@@ -28,12 +28,12 @@ function view(petitionNumber) {
     method: 'GET',
     dataType: 'html',
   });
-  tablePromise.done(data => {
+  tablePromise.done(function (data) {
     $extra.html(data);
   });
 }
 
-$(() => {
+$(function () {
   const queryParamMatches = window.location.href.match(/\?p=(6\d{4})$/);
   if (queryParamMatches && queryParamMatches.length > 1) {
     window.location.replace(`/#${queryParamMatches[1]}`);
@@ -48,7 +48,7 @@ $(() => {
 
   const $petitionNumber = $('#petitionNumber');
 
-  $('form').submit((e) => {
+  $('form').submit(function (e) {
     e.preventDefault();
     view($petitionNumber.val());
     return false;
